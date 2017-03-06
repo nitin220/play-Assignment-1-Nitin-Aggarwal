@@ -27,7 +27,6 @@ class HomeController @Inject() extends Controller {
     request.session.get("username").map{ username=>
       val obj=new GetUserData
       val usedData=obj.userData(username)
-      println(usedData)
     Ok(views.html.profilePage(usedData))
     }.getOrElse{
       Unauthorized("Oops")
