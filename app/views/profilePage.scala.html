@@ -1,0 +1,46 @@
+@(data:Model.Accounts)
+@main(data.uname){
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="@routes.LoginController.logout()"><i class="fa fa-power-off" aria-hidden="true"></i>
+                <span style="margin-left:10px;font-size:15px;">Logout</span>
+            </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<!--<div class="col-md-4" >
+
+    <img src="@routes.Assets.versioned("images/img.jpg")" class="img-responsive profiledp img-circle" alt="playAvatar" >
+
+</div>
+<div class="col-md-4" ></div>-->
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-3" ></div>
+    <div class="col-md-6 info underline" >Name:@data.fname @data.mname @data.lname </div>
+    <div class="col-md-3" ></div>
+</div>
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4" ></div>
+    <div class="col-md-4 restInfo" >UserName:@data.uname</div>
+    <div class="col-md-4" ></div>
+</div>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4" ></div>
+    <div class="col-md-4 restInfo" >DateOfBirth:@data.dateOfBitrh</div>
+    <div class="col-md-4" ></div>
+</div>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4" ></div>
+    <div class="col-md-4 restInfo" >Gender:@data.gender </div>
+    <div class="col-md-4" ></div>
+</div>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-4" ></div>
+    <div class="col-md-4 restInfo" >Likes To:@data.hobby</div>
+    <div class="col-md-4" ></div>
+</div>
+}

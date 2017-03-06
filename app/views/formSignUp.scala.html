@@ -1,0 +1,65 @@
+@()(implicit flash: Flash)
+
+@main(""){
+@navBar()
+<form class="container form-group Sign RegForm" action="@routes.SignUpController.addAccount()" method="post" >
+
+
+    @flash.get("error").getOrElse("")
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter FirstName" required>
+    </div>
+    <div class="form-group">
+        <label>Middle Name</label>
+        <input type="text" class="form-control" id="mname" name="mname" placeholder="Enter MiddleName" >
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter LastName(Optional)" >
+    </div>
+    <div class="form-group">
+        <label>User Name</label>
+        <input type="email" class="form-control" id="uname" name="uname" placeholder="Enter Username" required>
+    </div>
+    <div class="form-group">
+        <label >Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+    </div>
+    <div class="form-group">
+        <label >Re-Enter Password</label>
+        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re Emter Password" required>
+    </div>
+    <div class="form-group">
+        <label>Date Of Bitrh</label>
+        <input type="date" name="dateOfBitrh" name="dateOfBitrh" required>
+    </div>
+    <div class="form-group">
+        <label >Genter</label>
+        <select class="gender" name="gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label >Hobie</label>
+        <input type="text" class="form-control" id="hobby" name="hobby" placeholder="Your Hobies" required>
+    </div>
+    <div class="form-group">
+        <label >Status</label>
+        <textarea class="form-control" id="status"  name="status" rows="3" placeholder="What is in your mind(Optional)"></textarea>
+    </div>
+    <!-- <div class="form-group">
+         <label >Upload Profile Image</label>
+         <input type="file" class="form-control-file" id="profilePic" name="profilePic" aria-describedby="fileHelp" required>
+     </div>-->
+    <div class="form-check">
+        <label class="form-check-label">
+            <input type="checkbox" class="form-check-input" required>
+            I agree Terms and Conditions
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+}
