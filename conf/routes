@@ -24,3 +24,9 @@ POST     /hello                           controllers.SignInController.checkUser
 GET     /profile                          controllers.HomeController.profile
 
 GET     /logout                           controllers.LoginController.logout
+
+GET     /management                       controllers.LoginController.management
+
+GET     /management/:uname                      controllers.LoginController.enableUser(uname:String)
+
+GET     /management1/:uname                       controllers.LoginController.disableUser(uname:String)
