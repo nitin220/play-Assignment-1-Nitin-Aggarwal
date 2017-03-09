@@ -43,4 +43,12 @@
     <div class="col-md-4 restInfo" >Likes To:@data.hobby</div>
     <div class="col-md-4" ></div>
 </div>
+<div>
+    <div class="col-md-4" ></div>
+    @if(data.role){
+    <a href="@routes.LoginController.management()" aria-hidden="true"><input type="button" value="ManagementPage">
+    </a>
+    }
+
+</div>
 }

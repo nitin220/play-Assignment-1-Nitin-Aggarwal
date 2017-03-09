@@ -9,10 +9,13 @@ case class Accounts(
                     lname:String,
                      uname:String,
                      password:String,
+                    repassword:String,
                      dateOfBitrh:String,
+                      role:Boolean,
                      gender:String,
                      hobby:String,
-                     status:String
+                     status:String,
+                    isEnable:Boolean
                    )
 
 case class User(

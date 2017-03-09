@@ -12,11 +12,11 @@
     </div>
     <div class="form-group">
         <label>Middle Name</label>
-        <input type="text" class="form-control" id="mname" name="mname" placeholder="Enter MiddleName" >
+        <input type="text" class="form-control" id="mname" name="mname" placeholder="Enter MiddleName(Optional)" >
     </div>
     <div class="form-group">
         <label>Last Name</label>
-        <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter LastName(Optional)" >
+        <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter LastName" required>
     </div>
     <div class="form-group">
         <label>User Name</label>
@@ -28,11 +28,21 @@
     </div>
     <div class="form-group">
         <label >Re-Enter Password</label>
-        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re Emter Password" required>
+        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re Enter Password" required>
     </div>
     <div class="form-group">
         <label>Date Of Bitrh</label>
         <input type="date" name="dateOfBitrh" name="dateOfBitrh" required>
+    </div>
+    <div>
+        <input type="hidden" name="role"
+                @if(play.Play.application().configuration().getString("role")=="Admin"){
+               value=true
+               }
+               else {
+               value=false
+               }/>
+
     </div>
     <div class="form-group">
         <label >Genter</label>
@@ -59,6 +69,9 @@
             <input type="checkbox" class="form-check-input" required>
             I agree Terms and Conditions
         </label>
+    </div>
+    <div>
+        <input type="hidden" name="isEnable" value="true">
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
 </form>

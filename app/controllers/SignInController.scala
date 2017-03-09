@@ -1,34 +1,26 @@
 package controllers
 
-import Model.User
-import play.api.data.Form
-import play.api.data.Forms._
+import javax.inject.Inject
+
 import play.api.mvc.{Action, Controller}
-import services.CheckUser
+import services.{CacheListService, CacheServices, UserService}
 
-class SignInController extends Controller{
+class SignInController @Inject()(service:CacheListService)(mapping:FormController) extends Controller{
 
-  val SignInForm:Form[User] = Form{
-
-    mapping(
-      "uname" -> nonEmptyText,
-      "password" -> nonEmptyText
-    )(User.apply)(User.unapply)
-
-  }
 
   def checkUser=Action{ implicit request =>
-    SignInForm.bindFromRequest.fold(
+      mapping.signInForm.bindFromRequest.fold(
       formWithErrors => {
         Redirect(routes.SignInController.signInForm()).flashing(
           "error" -> "Something went Wrong Please Try Again")
       },
       userData => {
-        val flag:Boolean=CheckUser.check(userData)
-        if(flag) Redirect(routes.HomeController.profile()).withSession(
-          "username" -> userData.uname)
+
+        val flag:Boolean=service.check(userData.uname)
+        if(flag)
+          Redirect(routes.HomeController.profile()).withSession(
+            "username" -> userData.uname)
         else {
-          /*Redirect(routes.HomeController.firstPage())*/
           Redirect(routes.SignInController.signInForm()).flashing(
             "error" -> "UserName Or Password is wrong Please Try Again!!")
 

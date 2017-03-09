@@ -1,0 +1,27 @@
+@(list:List[String])(implicit flash: Flash)
+@main("Manage"){
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li><a href="@routes.HomeController.profilePage()"><i aria-hidden="true"></i>
+                <span style="margin-left:10px;font-size:15px;">Home</span>
+            </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    @flash.get("success").getOrElse("")
+<table class="table table-striped">
+
+    @for(order <- list) {
+    <tr>
+    <td>@order</td>
+        <td><a href="@routes.LoginController.disableUser(order)"> Disable User</a></td>
+        <td><a href="@routes.LoginController.enableUser(order)">Enable user</a></td>
+    </tr>
+    }
+
+</table>
+</div>
+}
