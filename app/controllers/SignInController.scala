@@ -5,6 +5,8 @@ import javax.inject.Inject
 import play.api.mvc.{Action, Controller}
 import services.{CacheListService, CacheServices, UserService}
 
+import scala.concurrent.Future
+
 class SignInController @Inject()(service:CacheListService)(mapping:FormController) extends Controller{
 
 
@@ -31,8 +33,10 @@ class SignInController @Inject()(service:CacheListService)(mapping:FormControlle
 
   }
 
-  def signInForm = Action { implicit request=>
-    Ok((views.html.formSignIn()))
+  def signInForm = Action.async { implicit request=>
+    val res = Ok((views.html.formSignIn()))
+    Future.successful(res)
+
   }
 
 }

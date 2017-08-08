@@ -4,6 +4,8 @@ import com.google.inject.Inject
 import play.api.mvc.{Action, Controller}
 import services.{CacheListService, CacheServices}
 
+import scala.concurrent.Future
+
 
 class LoginController @Inject()(service: CacheListService) extends Controller {
 
@@ -12,10 +14,10 @@ class LoginController @Inject()(service: CacheListService) extends Controller {
     Redirect(routes.HomeController.firstPage()).withNewSession
   }
 
-  def management = Action { implicit request =>
+  def management = Action.async { implicit request =>
 
     val list = service.getAll()
-    Ok(views.html.ManagementPage(list))
+   Future.successful(Ok(views.html.ManagementPage(list)))
   }
 
   def enableUser(uname: String) = Action { implicit request =>
@@ -25,10 +27,10 @@ class LoginController @Inject()(service: CacheListService) extends Controller {
       "success" -> "User enabled")
   }
 
-  def disableUser(uname: String) = Action { implicit request =>
+  def disableUser(uname: String) = Action.async { implicit request =>
     service.disable(uname)
-    Redirect(routes.LoginController.management()).flashing(
+    Future.successful(Redirect(routes.LoginController.management()).flashing(
       "success" -> "User disabled").withSession(
-      "username" -> uname)
+      "username" -> uname))
   }
 }
